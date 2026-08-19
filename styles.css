@@ -347,3 +347,36 @@ h1,h2,h3{
   .project-title{ font-size: 2.2rem; }
   .intro-lead{ font-size:1.5rem; }
 }
+
+/* ---------------- Lightbox ---------------- */
+.lightbox-overlay{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index: 1000;
+  padding: 40px;
+}
+.lightbox-overlay.is-open{ display:flex; }
+.lightbox-img{
+  max-width: 88vw;
+  max-height: 88vh;
+  box-shadow: 0 10px 40px rgba(0,0,0,.6);
+}
+.lightbox-close{
+  position:absolute; top:20px; right:24px;
+  background:none; border:0; color:#fff;
+  font-size: 2.2rem; line-height:1; cursor:pointer;
+}
+.lightbox-prev, .lightbox-next{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background: rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.5);
+  color:#fff;
+  width:48px; height:48px;
+  cursor:pointer;
+  font-size:16px;
+}
+.lightbox-prev{ left:24px; }
+.lightbox-next{ right:24px; }
