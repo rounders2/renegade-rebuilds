@@ -1,0 +1,90 @@
+name: Rename assets
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename and sort image files
+        run: |
+          cd assets/images
+          mkdir -p fantastiko frank chopped walnut
+          git mv "renegade_rebuilds_logo_bold.png" "logo.png"
+          git mv "renegade_rebuilds_favicon.png" "favicon.png"
+          git mv "renegade_rebuilds_nelson_bc_espresso_header1-1_shrink.jpg" "hero-1.jpg"
+          git mv "working_on_espresso_machine2.jpg" "hero-2.jpg"
+          git mv "renegade_fb_cover4.jpg" "hero-3.jpg"
+          git mv "fantastiko_coloredBG.jpg" "bg-fantastiko.jpg"
+          git mv "Frank_colorBG.jpg" "bg-frank.jpg"
+          git mv "chopped_colorBG.jpg" "bg-chopped.jpg"
+          git mv "walnut_colorBG.jpg" "bg-walnut.jpg"
+          git mv "renegade_rebuilds_contact_plate.jpg" "bg-contact.jpg"
+          git mv "450_block.png" "about.png"
+          git mv "magicbox_perspective.jpg" "fantastiko/featured.jpg"
+          git mv "fantastiko_diff.png" "fantastiko/featured-hover.png"
+          git mv "magicbox_espresso_machine_0007_magicbox_custom_espresso_machine_360_1-9.jpg" "fantastiko/01.jpg"
+          git mv "magicbox_espresso_machine_0006_magicbox_custom_espresso_machine_360_1-8.jpg" "fantastiko/02.jpg"
+          git mv "magicbox_espresso_machine_0005_magicbox_custom_espresso_machine_360_1-6.jpg" "fantastiko/03.jpg"
+          git mv "magicbox_espresso_machine_0004_magicbox_custom_espresso_machine_360_1-5.jpg" "fantastiko/04.jpg"
+          git mv "magicbox_espresso_machine_0001_magicbox_custom_espresso_machine_360_1-2-1.jpg" "fantastiko/05.jpg"
+          git mv "magicbox_espresso_machine_0000_magicbox_custom_espresso_machine_360_1-1-1.jpg" "fantastiko/06.jpg"
+          git mv "magicbox_espresso_machine_0003_magicbox_custom_espresso_machine_360_1-4.jpg" "fantastiko/07.jpg"
+          git mv "magicbox_espresso_machine_0002_magicbox_custom_espresso_machine_360_1-3.jpg" "fantastiko/08.jpg"
+          git mv "magicbox_espresso_machine_0001_magicbox_custom_espresso_machine_360_1-2.jpg" "fantastiko/09.jpg"
+          git mv "magicbox_espresso_machine_0000_magicbox_custom_espresso_machine_360_1-1.jpg" "fantastiko/10.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-8.jpg" "fantastiko/11.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-7.jpg" "fantastiko/12.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-6.jpg" "fantastiko/13.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-4.jpg" "fantastiko/14.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-3.jpg" "fantastiko/15.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-5_warm.jpg" "fantastiko/16.jpg"
+          git mv "renegade_rebuilds_espresso_machine_magicbox-2.jpg" "fantastiko/17.jpg"
+          git mv "frank_featured_normal.jpg" "frank/featured.jpg"
+          git mv "rustyFrankenstein.png" "frank/featured-hover.png"
+          git mv "frank_blk_20.jpg" "frank/02.jpg"
+          git mv "frank_blk_21.jpg" "frank/03.jpg"
+          git mv "frank_blk_9.jpg" "frank/04.jpg"
+          git mv "frank_blk_10.jpg" "frank/05.jpg"
+          git mv "frank_blk_11.jpg" "frank/06.jpg"
+          git mv "frank_blk_16.jpg" "frank/07.jpg"
+          git mv "frank_blk_17.jpg" "frank/08.jpg"
+          git mv "frank_blk_14.jpg" "frank/09.jpg"
+          git mv "frank_blk_12.jpg" "frank/10.jpg"
+          git mv "largeFeaturedImage_design2.jpg" "chopped/featured.jpg"
+          git mv "chopped_diff.png" "chopped/featured-hover.png"
+          git mv "chopped-modified-z11-espresso-machine_0004_Layer-1.jpg" "chopped/02.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0005_IMG_20170614_190556-copy.jpg" "chopped/03.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0006_IMG_20170614_190623-copy.jpg" "chopped/04.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0007_IMG_20170614_190712-copy.jpg" "chopped/05.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0009_IMG_20170614_191006-copy.jpg" "chopped/06.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0008_IMG_20170614_190945-copy.jpg" "chopped/07.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0013_IMG_20170614_191210-copy.jpg" "chopped/08.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0011_Untitled1_0015_IMG_20170614_191142-copy.jpg" "chopped/09.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0010_Untitled1_0014_IMG_20170614_191120-copy.jpg" "chopped/10.jpg"
+          git mv "chopped-modified-z11-espresso-machine_0001_Untitled1_0001_IMG_20170614_190407-copy.jpg" "chopped/11.jpg"
+          git mv "Walnut_largeFeatured_Design2.jpg" "walnut/featured.jpg"
+          git mv "walnut_diff.png" "walnut/featured-hover.png"
+          git mv "wicked_walnut_espresso_machine_5.jpg" "walnut/02.jpg"
+          git mv "wicked_walnut_espresso_machine_13.jpg" "walnut/03.jpg"
+          git mv "wicked_walnut_espresso_machine_4.jpg" "walnut/04.jpg"
+          git mv "wicked_walnut_espresso_machine_1.jpg" "walnut/05.jpg"
+          git mv "wicked_walnut_espresso_machine_3.jpg" "walnut/06.jpg"
+          git mv "wicked_walnut_espresso_machine_2.jpg" "walnut/07.jpg"
+          git mv "wicked_walnut_espresso_machine_6.jpg" "walnut/08.jpg"
+          git mv "wicked_walnut_espresso_machine_12.jpg" "walnut/09.jpg"
+          git mv "wicked_walnut_espresso_machine_11.jpg" "walnut/10.jpg"
+          git mv "wicked_walnut_espresso_machine_10.jpg" "walnut/11.jpg"
+          git mv "wicked_walnut_espresso_machine_8.jpg" "walnut/12.jpg"
+          git mv "wicked_walnut_espresso_machine_7.jpg" "walnut/13.jpg"
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rename and organize image assets per README mapping"
+          git push
