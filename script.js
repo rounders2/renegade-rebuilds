@@ -4,6 +4,26 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ---------- Back-to-top button (fades in on scroll) ---------- */
+  var scrollTopBtn = document.querySelector('.scroll-top');
+  if (scrollTopBtn) {
+    var SCROLL_TOP_THRESHOLD = 400;
+    var ticking = false;
+
+    function updateScrollTopVisibility() {
+      scrollTopBtn.classList.toggle('is-visible', window.scrollY > SCROLL_TOP_THRESHOLD);
+      ticking = false;
+    }
+
+    updateScrollTopVisibility();
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollTopVisibility);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
   /* ---------- Mobile nav toggle ---------- */
   var navToggle = document.getElementById('navToggle');
   var navList = document.querySelector('.nav-list');
@@ -80,6 +100,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (lightboxLinks.length) {
     var overlay = document.createElement('div');
     overlay.className = 'lightbox-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Image viewer');
     overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button>' +
       '<button class="lightbox-prev" aria-label="Previous">&#10094;</button>' +
       '<img class="lightbox-img" src="" alt="">' +
@@ -90,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var closeBtn = overlay.querySelector('.lightbox-close');
     var prevBtn2 = overlay.querySelector('.lightbox-prev');
     var nextBtn2 = overlay.querySelector('.lightbox-next');
+    var focusableEls = [prevBtn2, nextBtn2, closeBtn];
+    var lastFocusedEl = null;
 
     var groups = {};
     lightboxLinks.forEach(function (link) {
@@ -108,7 +133,10 @@ document.addEventListener('DOMContentLoaded', function () {
       activeGroup = groups[groupKey] || [link];
       activeIndex = activeGroup.indexOf(link);
       showActive();
+      lastFocusedEl = document.activeElement;
       overlay.classList.add('is-open');
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden';
     }
 
     function showActive() {
@@ -117,7 +145,11 @@ document.addEventListener('DOMContentLoaded', function () {
       lbImg.alt = link.querySelector('img') ? link.querySelector('img').alt : '';
     }
 
-    function closeLightbox() { overlay.classList.remove('is-open'); }
+    function closeLightbox() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (lastFocusedEl) lastFocusedEl.focus();
+    }
 
     lightboxLinks.forEach(function (link) {
       link.addEventListener('click', function (e) {
@@ -143,6 +175,18 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') prevBtn2.click();
       if (e.key === 'ArrowRight') nextBtn2.click();
+      if (e.key === 'Tab') {
+        // trap focus within the dialog
+        var first = focusableEls[0];
+        var last = focusableEls[focusableEls.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     });
   }
 
