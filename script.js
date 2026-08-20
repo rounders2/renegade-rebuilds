@@ -104,9 +104,11 @@ document.addEventListener('DOMContentLoaded', function () {
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Image viewer');
     overlay.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button>' +
-      '<button class="lightbox-prev" aria-label="Previous">&#10094;</button>' +
       '<img class="lightbox-img" src="" alt="">' +
-      '<button class="lightbox-next" aria-label="Next">&#10095;</button>';
+      '<div class="lightbox-nav">' +
+      '<button class="lightbox-prev" aria-label="Previous">&#10094;</button>' +
+      '<button class="lightbox-next" aria-label="Next">&#10095;</button>' +
+      '</div>';
     document.body.appendChild(overlay);
 
     var lbImg = overlay.querySelector('.lightbox-img');
@@ -188,6 +190,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     });
+
+    // Swipe support (mobile)
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var SWIPE_THRESHOLD = 40;
+    lbImg.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    lbImg.addEventListener('touchend', function (e) {
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > SWIPE_THRESHOLD && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) nextBtn2.click(); else prevBtn2.click();
+      }
+    }, { passive: true });
   }
 
 });

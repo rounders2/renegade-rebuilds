@@ -385,7 +385,7 @@ h1,h2,h3{
   display:none;
   align-items:center;
   justify-content:center;
-  z-index: 1000;
+  z-index: 2000;
   padding: 40px;
 }
 .lightbox-overlay.is-open{ display:flex; }
@@ -410,3 +410,19 @@ h1,h2,h3{
 }
 .lightbox-prev{ left:24px; }
 .lightbox-next{ right:24px; }
+.lightbox-nav{ display:contents; }
+
+@media (max-width: 700px){
+  .lightbox-overlay{ padding: 20px; padding-bottom: 90px; }
+  .lightbox-nav{
+    display:flex;
+    position:absolute;
+    left:0; right:0; bottom:20px;
+    justify-content:center;
+    gap:16px;
+  }
+  .lightbox-prev, .lightbox-next{
+    position:static;
+    top:auto; left:auto; right:auto; transform:none;
+  }
+}
